@@ -22,7 +22,7 @@ public class PaymentController {
     private PaymentService paymentService;
 
     @PostMapping(value = "payment/add")
-    public CommonResult<Integer> add(Payment payment) {
+    public CommonResult<Integer> add(@RequestBody Payment payment) {
         int result = paymentService.add(payment);
         log.info("插入结果：{}", result);
         if (result > 0) {
