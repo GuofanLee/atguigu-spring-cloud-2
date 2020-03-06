@@ -20,7 +20,8 @@ import javax.annotation.Resource;
 @RestController
 public class OrderController {
 
-    public static final String PAYMENT_URL = "http://localhost:8001";
+    //通过服务名调用
+    public static final String PAYMENT_URL = "http://cloud-payment-service";
 
     @Resource
     private RestTemplate restTemplate;
@@ -32,7 +33,7 @@ public class OrderController {
 
     @GetMapping("/consumer/payment/get/{id}")
     public CommonResult<Payment> getPayment(@PathVariable("id") Long id) {
-        return restTemplate.getForObject(PAYMENT_URL + "payment/get/" + id, CommonResult.class);
+        return restTemplate.getForObject(PAYMENT_URL + "/payment/get/" + id, CommonResult.class);
     }
 
 }

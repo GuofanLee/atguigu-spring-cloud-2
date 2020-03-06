@@ -2,6 +2,7 @@ package com.atguigu.springcloud;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 /**
  * 请填写类的描述
@@ -9,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author GuofanLee
  * @date 2020-03-06 14:50
  */
+@EnableEurekaClient
 @SpringBootApplication
 public class OrderMain80 {
 
