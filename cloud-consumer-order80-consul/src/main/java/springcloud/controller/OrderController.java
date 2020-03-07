@@ -1,4 +1,4 @@
-package com.atguigu.springcloud.controller;
+package springcloud.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,9 +21,9 @@ public class OrderController {
     @Resource
     private RestTemplate restTemplate;
 
-    @GetMapping("consumer/payment/zk")
+    @GetMapping("consumer/payment/consul")
     public String create() {
-        return restTemplate.getForObject(PAYMENT_URL + "/payment/zk", String.class);
+        return restTemplate.getForObject(PAYMENT_URL + "/payment/consul", String.class);
     }
 
 }
