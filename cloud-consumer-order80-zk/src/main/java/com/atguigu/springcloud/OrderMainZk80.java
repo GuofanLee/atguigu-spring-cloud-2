@@ -8,14 +8,14 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * 使用 Zookeeper 作为注册中心
  *
  * @author GuofanLee
- * @date 2020-03-07 16:45
+ * @date 2020-03-07 20:12
  */
-@EnableDiscoveryClient          //该注解用于向使用 Zookeeper、Consul 作为注册中心时注册服务
+@EnableDiscoveryClient
 @SpringBootApplication
-public class PaymentMain8004 {
+public class OrderMainZk80 {
 
     public static void main(String[] args) {
-        SpringApplication.run(PaymentMain8004.class, args);
+        SpringApplication.run(OrderMainZk80.class, args);
     }
 
 }

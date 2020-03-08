@@ -1,21 +1,21 @@
-package springcloud;
+package com.atguigu.springcloud;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
- * 使用 Consul 作为注册中心
+ * 使用 Zookeeper 作为注册中心
  *
  * @author GuofanLee
- * @date 2020-03-07 20:12
+ * @date 2020-03-07 16:45
  */
-@EnableDiscoveryClient
+@EnableDiscoveryClient          //该注解用于向使用 Zookeeper、Consul 作为注册中心时注册服务
 @SpringBootApplication
-public class OrderMain80 {
+public class PaymentMainZk8004 {
 
     public static void main(String[] args) {
-        SpringApplication.run(OrderMain80.class, args);
+        SpringApplication.run(PaymentMainZk8004.class, args);
     }
 
 }
