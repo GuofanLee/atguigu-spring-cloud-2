@@ -10,22 +10,17 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>cloud-eureka-server7001</artifactId>
+    <artifactId>cloud-api</artifactId>
 
     <dependencies>
-        <!-- eureka server -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
-        </dependency>
-        <!-- boot web actuator -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
+            <groupId>com.atguigu.springcloud</groupId>
+            <artifactId>cloud-commons</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 

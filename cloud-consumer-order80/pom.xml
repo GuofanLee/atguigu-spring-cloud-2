@@ -20,7 +20,7 @@
         </dependency>
         <dependency>
             <groupId>com.atguigu.springcloud</groupId>
-            <artifactId>cloud-api-commons</artifactId>
+            <artifactId>cloud-commons</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>

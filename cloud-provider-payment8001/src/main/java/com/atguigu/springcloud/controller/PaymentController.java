@@ -1,5 +1,6 @@
 package com.atguigu.springcloud.controller;
 
+import com.atguigu.springcloud.api.PaymentApi;
 import com.atguigu.springcloud.entities.CommonResult;
 import com.atguigu.springcloud.entities.Payment;
 import com.atguigu.springcloud.service.PaymentService;
@@ -7,10 +8,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 请填写类的描述
@@ -20,7 +22,7 @@ import java.util.List;
  */
 @Slf4j
 @RestController
-public class PaymentController {
+public class PaymentController implements PaymentApi {
 
     @Value("${server.port}")
     private String serverPort;
@@ -31,8 +33,8 @@ public class PaymentController {
     @Resource
     private DiscoveryClient discoveryClient;
 
-    @PostMapping(value = "payment/add")
-    public CommonResult<Integer> add(@RequestBody Payment payment) {
+    @Override
+    public CommonResult<Integer> add(Payment payment) {
         int result = paymentService.add(payment);
         log.info("插入结果：{}", result);
         if (result > 0) {
@@ -42,8 +44,8 @@ public class PaymentController {
         }
     }
 
-    @GetMapping(value = "payment/get/{id}")
-    public CommonResult<Payment> getPaymentById(@PathVariable("id") Long id) {
+    @Override
+    public CommonResult<Payment> getPaymentById(Long id) {
         Payment payment = paymentService.getPaymentById(id);
         log.info("查询结果：{}", payment);
         if (payment != null) {
@@ -53,7 +55,7 @@ public class PaymentController {
         }
     }
 
-    @GetMapping(value = "payment/discovery")
+    @Override
     public Object discovery() {
         List<String> services = discoveryClient.getServices();
         for (String service : services) {
@@ -64,6 +66,16 @@ public class PaymentController {
             log.info("ServiceId：{}\tHost：{}\tPort：{}\tUri：{}", instance.getServiceId(), instance.getHost(), instance.getPort(), instance.getUri());
         }
         return discoveryClient;
+    }
+
+    @Override
+    public String paymentFeignTimeOut() {
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return serverPort;
     }
 
 }
