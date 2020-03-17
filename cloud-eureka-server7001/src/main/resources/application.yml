@@ -1,14 +1,21 @@
 server:
   port: 7001
 
+spring:
+  application:
+    name: cloud-eureka                # 集群版注册中心需要互相注册，定义个服务名可以方便查看
+
 eureka:
   instance:
-    hostname: eureka7001.com          # eureka服务端实例名称
+    hostname: eureka7001.com          # 定义主机名作为 Eureka 注册中心的地址，需要在系统 host 文件中配置：127.0.0.1 eureka7001.com
+#    hostname: localhost              # 单机版写法
+#    prefer-ip-address: true          # 如果不想使用主机名来定义注册中心的地址，该方式将使用 IP 作为注册中心地址
   client:
-    register-with-eureka: false       # false表示不向注册中心注册自己
-    fetch-registry: false             # false表示自己端就是注册中心，我的职责就是维护服务实例，并不需要去检索服务
+#    register-with-eureka: false       # false表示不向注册中心注册自己，单机版关闭，集群版默认打卡
+#    fetch-registry: false             # false表示自己端就是注册中心，我的职责就是维护服务实例，并不需要去检索服务，单机版关闭，集群版不用打开
     service-url:
-      defaultZone: http://eureka7002.com:7002/eureka/       # eureka集群之间需要相互注册
+      defaultZone: http://eureka7002.com:7002/eureka/       # eureka集群之间需要相互注册，集群版写法
+#      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/           # 单机版写法
   server:
     enable-self-preservation: false         # 关闭 Eureka 自我保护机制，保证不可用服务被及时清除
     eviction-interval-timer-in-ms: 5000     # 设置多长时间收不到微服务的心跳将其清除
